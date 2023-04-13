@@ -16,9 +16,7 @@ export default async function authValidation(req: Request, res: Response, next: 
   try {
     const { userId } = jwt.verify(token, process.env.SECRET_JWT) as JWTPayload;
 
-    const {
-      rows: [user],
-    } = await userRepositories.findById(userId);
+    const user = await userRepositories.findById(userId);
 
     if (!user) throw errors.unauthorizedError();
 
