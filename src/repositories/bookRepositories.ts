@@ -1,9 +1,15 @@
 import { QueryResult } from 'pg';
 import connectionDb from '../config/database.js';
 import { BookEntity, FindAllBooks, findAllMyBooks } from '../protocols/types.js';
+import prisma from '../config/database.js';
 
 async function findAll() {
-  return []; //await connectionDb.query(
+  return await prisma.books.findMany({
+    include: {
+      users: true,
+    },
+  });
+  //await connectionDb.query(
   //     `
   //       SELECT
   //         b.id, b.name, b.author, b.available,

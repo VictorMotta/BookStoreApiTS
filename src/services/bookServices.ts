@@ -3,6 +3,7 @@ import bookRepositories from '../repositories/bookRepositories.js';
 
 async function findAll() {
   const books = await bookRepositories.findAll();
+  console.log(books);
 
   if (!books) throw errors.notFoundError();
 
