@@ -1,7 +1,7 @@
 import prisma from '../config/database.js';
 
 async function findByEmail(email: string) {
-  return await prisma.users.findFirst({
+  return await prisma.user.findFirst({
     where: {
       email,
     },
@@ -9,7 +9,7 @@ async function findByEmail(email: string) {
 }
 
 async function signUp(name: string, email: string, password: string) {
-  await prisma.users.create({
+  await prisma.user.create({
     data: {
       name,
       email,
@@ -19,7 +19,7 @@ async function signUp(name: string, email: string, password: string) {
 }
 
 async function findById(id: number) {
-  return await prisma.users.findFirst({
+  return await prisma.user.findFirst({
     where: {
       id,
     },

@@ -6,8 +6,9 @@ async function findAll(_req: Request, res: Response, next: NextFunction) {
   try {
     const books = await bookServices.findAll();
 
-    return res.send({ books });
+    return res.send(books);
   } catch (err) {
+    console.log(err);
     next(err);
   }
 }

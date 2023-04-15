@@ -6,17 +6,17 @@ async function main() {
       {
         name: 'João',
         email: 'joao@gmail.com',
-        password: '12345678',
+        password: '$2b$10$5JA6GzKwOl44Lhk/sgWKpeUTgNjtx1M/xk9S6t0Xsesog6.e23Iy2',
       },
       {
         name: 'Alfredo',
         email: 'alfredo@gmail.com',
-        password: '12345678',
+        password: '$2b$10$5JA6GzKwOl44Lhk/sgWKpeUTgNjtx1M/xk9S6t0Xsesog6.e23Iy2',
       },
       {
         name: 'Manezin',
         email: 'manezin@gmail.com',
-        password: '12345678',
+        password: '$2b$10$5JA6GzKwOl44Lhk/sgWKpeUTgNjtx1M/xk9S6t0Xsesog6.e23Iy2',
       },
     ],
   });

@@ -7,29 +7,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model books {
-  id        Int       @id @default(autoincrement())
+model Book {
+  id        Int      @id @default(autoincrement())
   name      String
   author    String
   available Boolean
   userId    Int
-  users     users     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  myBooks   myBooks[]
+  User      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  MyBook    MyBook[]
+
+  @@map(name: "books")
 }
 
-model myBooks {
-  id     Int   @id @default(autoincrement())
+model MyBook {
+  id     Int  @id @default(autoincrement())
   userId Int
   bookId Int
-  books  books @relation(fields: [bookId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  users  users @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Book   Book @relation(fields: [bookId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User   User @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map(name: "myBooks")
 }
 
-model users {
-  id       Int       @id @default(autoincrement())
+model User {
+  id       Int      @id @default(autoincrement())
   name     String
-  email    String    @unique
+  email    String   @unique
   password String
-  books    books[]
-  myBooks  myBooks[]
+  Book     Book[]
+  MyBook   MyBook[]
+
+  @@map(name: "users")
 }

@@ -1,96 +1,54 @@
-import { QueryResult } from 'pg';
-import connectionDb from '../config/database.js';
 import { BookEntity, FindAllBooks, findAllMyBooks } from '../protocols/types.js';
 import prisma from '../config/database.js';
 
 async function findAll() {
-  return await prisma.books.findMany({
-    include: {
-      users: true,
+  return await prisma.book.findMany({
+    select: {
+      id: true,
+      name: true,
+      author: true,
+      available: true,
+      User: { select: { name: true } },
     },
   });
-  //await connectionDb.query(
-  //     `
-  //       SELECT
-  //         b.id, b.name, b.author, b.available,
-  //         u.name as "createdBy"
-  //       FROM books b
-  //       JOIN users u
-  //       ON b."userId" = u.id;
-  //   `
-  //   );
 }
 
 async function findById(id: number) {
-  return [];
-  // await connectionDb.query(
-  //   `
-  //         SELECT * FROM books
-  //         WHERE id = $1;
-  //     `,
-  //   [id]
-  // );
+  return await prisma.book.findFirst({ where: { id } });
 }
 
 async function findByName(name: string) {
-  return [];
-  // await connectionDb.query(
-  //   `
-  //       SELECT * FROM books WHERE name = $1;
-  //   `,
-  //   [name]
-  // );
+  return await prisma.book.findFirst({ where: { name } });
 }
 
 async function findAllMyBooks(userId: number) {
-  return [];
-  // await connectionDb.query(
-  //   `
-  //   SELECT
-  //     u.name as "userName",
-  //     b.name as "bookName",
-  //     b.author as "bookAuthor"
-  //   FROM "myBooks" m
-  //     JOIN users u ON m."userId" = u.id
-  //     JOIN books b ON m."bookId" = b.id
-  //   WHERE m."userId" = $1
-  //   `,
-  //   [userId]
-  // );
+  return prisma.myBook.findMany({
+    select: {
+      id: true,
+      User: { select: { name: true } },
+      Book: { select: { name: true, author: true } },
+    },
+    where: { userId },
+  });
 }
 
 async function create(name: string, author: string, userId: number) {
-  return [];
-  // await connectionDb.query(
-  //   `
-  //       INSERT INTO books (name, author, "userId")
-  //       VALUES ($1, $2, $3)
-  //       `,
-  //   [name, author, userId]
-  // );
+  await prisma.book.create({
+    data: {
+      name,
+      author,
+      userId,
+      available: true,
+    },
+  });
 }
 
 async function updateStatusBook(status: boolean, bookId: number) {
-  return [];
-  // await connectionDb.query(
-  //   `
-  //     UPDATE books
-  //     SET available = $1
-  //     WHERE id = $2;
-  // `,
-  //   [status, bookId]
-  // );
+  return await prisma.book.update({ where: { id: bookId }, data: { available: status } });
 }
 
 async function takeBook(userId: number, bookId: number) {
-  return [];
-  // await connectionDb.query(
-  //   `
-  //     INSERT INTO "myBooks" ("userId", "bookId")
-  //     VALUES ($1, $2);
-  //   `,
-  //   [userId, bookId]
-  // );
+  await prisma.myBook.create({ data: { userId, bookId } });
 }
 
 export default {
