@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 async function signUp(user: User) {
   const { name, email, password } = user;
   const userFound = await userRepositories.findByEmail(email);
-  console.log(userFound);
+
   if (userFound) throw errors.duplicatedEmailError(email);
 
   const hashPassword = await bcrypt.hash(password, 10);
