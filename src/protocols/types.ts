@@ -26,3 +26,24 @@ export type FindAllBooks = {
   available: boolean;
   createdBy: string;
 };
+
+export type TakenBook = {
+  id: number;
+  User: {
+    name: string;
+  };
+  Book: {
+    name: string;
+    author: string;
+  };
+};
+
+export type BookAndCreator = {
+  id: number;
+  available: boolean;
+  name: string;
+  author: string;
+  User: {
+    name: string;
+  };
+};

@@ -1,7 +1,7 @@
-import { BookEntity, FindAllBooks, findAllMyBooks } from '../protocols/types.js';
-import prisma from '../config/database.js';
+import { BookAndCreator, TakenBook, findAllMyBooks } from '../protocols/types';
+import prisma from '../config/database';
 
-async function findAll() {
+async function findAll(): Promise<BookAndCreator[]> {
   return await prisma.book.findMany({
     select: {
       id: true,
@@ -21,7 +21,7 @@ async function findByName(name: string) {
   return await prisma.book.findFirst({ where: { name } });
 }
 
-async function findAllMyBooks(userId: number) {
+async function findAllMyBooks(userId: number): Promise<TakenBook[]> {
   return prisma.myBook.findMany({
     select: {
       id: true,

@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import userRoutes from './userRoutes.js';
-import bookRoutes from './bookRoutes.js';
+import userRoutes from './userRoutes';
+import bookRoutes from './bookRoutes';
 
 const routes = Router();
 

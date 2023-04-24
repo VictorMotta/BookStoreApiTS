@@ -1,7 +1,7 @@
-import { User } from '../protocols/types.js';
-import errors from '../errors/index.js';
+import { User } from '../protocols/types';
+import errors from '../errors/index';
 import bcrypt from 'bcrypt';
-import userRepositories from '../repositories/userRepositories.js';
+import userRepositories from '../repositories/userRepositories';
 import jwt from 'jsonwebtoken';
 
 async function signUp(user: User) {

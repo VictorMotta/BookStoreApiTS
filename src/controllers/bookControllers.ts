@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import bookServices from '../services/bookServices.js';
-import { createNewBook } from '../protocols/types.js';
+import bookServices from '../services/bookServices';
+import { createNewBook } from '../protocols/types';
 
 async function findAll(_req: Request, res: Response, next: NextFunction) {
   try {

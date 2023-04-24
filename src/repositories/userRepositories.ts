@@ -1,4 +1,4 @@
-import prisma from '../config/database.js';
+import prisma from '../config/database';
 
 async function findByEmail(email: string) {
   return await prisma.user.findFirst({

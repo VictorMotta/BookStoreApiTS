@@ -1,5 +1,5 @@
-import errors from '../errors/index.js';
-import bookRepositories from '../repositories/bookRepositories.js';
+import errors from '../errors/index';
+import bookRepositories from '../repositories/bookRepositories';
 
 async function findAll() {
   const books = await bookRepositories.findAll();

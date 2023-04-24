@@ -1,7 +1,7 @@
-import prisma from '../src/config/database.js';
+import prisma from '../src/config/database';
 
 async function main() {
-  await prisma.users.createMany({
+  await prisma.user.createMany({
     data: [
       {
         name: 'João',
@@ -20,7 +20,7 @@ async function main() {
       },
     ],
   });
-  await prisma.books.createMany({
+  await prisma.book.createMany({
     data: [
       {
         name: 'Harry Potter',
