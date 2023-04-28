@@ -5,12 +5,13 @@
   "type": "commonjs",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "test": "npx dotenv -e .env.test npx jest",
-    "dev": "npx nodemon src/server.ts ",
-    "prisma:seed": "npx prisma db seed",
-    "dev:run:migrate": "npx prisma migrate dev",
-    "test:run:migrate": "npx dotenv -e .env.test npx prisma migrate dev --name test_migrate postgres-init"
+    "build": "cross-env NODE_ENV=dev tsc -p tsconfig.json",
+    "test": "cross-env NODE_ENV=test npx jest ",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
+    "dev": "cross-env NODE_ENV=dev nodemon 'src/' --exec 'ts-node -r tsconfig-paths/register ./src/server.ts'",
+    "prisma:seed:dev": "cross-env NODE_ENV=dev prisma db seed",
+    "dev:run:migrate": "cross-env NODE_ENV=dev prisma migrate dev",
+    "test:run:migrate": "cross-env NODE_ENV=dev prisma migrate dev --name test_migrate postgres-init"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
@@ -27,6 +28,7 @@
   },
   "homepage": "https://github.com/VictorMotta/BookStoreApiTS#readme",
   "dependencies": {
+    "@prisma/client": "^4.12.0",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -34,8 +36,7 @@
     "express-async-errors": "^3.1.1",
     "http-status": "^1.6.2",
     "joi": "^17.9.1",
-    "jsonwebtoken": "^9.0.0",
-    "@prisma/client": "^4.12.0"
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.21.2",
@@ -49,6 +50,7 @@
     "@types/node": "^18.15.11",
     "@types/pg": "^8.6.6",
     "@types/supertest": "^2.0.12",
+    "cross-env": "^7.0.3",
     "dotenv-cli": "^7.2.1",
     "jest": "^29.5.0",
     "jsonwebtoken": "^9.0.0",
@@ -59,6 +61,8 @@
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "tsc": "^2.0.4",
-    "typescript": "^5.0.3"
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.0.3",
+    "typescript-transform-paths": "^3.4.6"
   }
 }

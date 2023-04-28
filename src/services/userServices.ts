@@ -1,7 +1,7 @@
-import { User } from '../protocols/types';
-import errors from '../errors/index';
+import { User } from '@/protocols/types';
+import errors from '@/errors/index';
 import bcrypt from 'bcrypt';
-import userRepositories from '../repositories/userRepositories';
+import userRepositories from '@/repositories/userRepositories';
 import jwt from 'jsonwebtoken';
 
 async function signUp(user: User) {
@@ -16,6 +16,8 @@ async function signUp(user: User) {
 
 async function signIn(userParam: User) {
   const { email, password } = userParam;
+  if (!email || !password) throw errors.badRequest();
+
   const user = await userRepositories.findByEmail(email);
   if (!user) throw errors.invalidCredentialsError();
 

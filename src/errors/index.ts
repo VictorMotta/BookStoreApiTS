@@ -1,11 +1,13 @@
-function conflictError(message: string | string[]) {
+import { ErrorType, ErrorTypeForEmail } from '@/protocols/types';
+
+function conflictError(message: string | string[]): ErrorType {
   return {
     name: 'ConflictError',
     message,
   };
 }
 
-function duplicatedEmailError(email: string) {
+function duplicatedEmailError(email: string): ErrorTypeForEmail {
   return {
     name: 'DuplicatedEmailError',
     message: 'There is already an user with given email',
@@ -13,24 +15,31 @@ function duplicatedEmailError(email: string) {
   };
 }
 
-function unauthorizedError() {
+function unauthorizedError(): ErrorType {
   return {
     name: 'UnauthorizedError',
     message: 'You must be signed in to continue',
   };
 }
 
-function notFoundError() {
+function notFoundError(): ErrorType {
   return {
     name: 'NotFoundError',
     message: 'No result for this search!',
   };
 }
 
-function invalidCredentialsError() {
+function invalidCredentialsError(): ErrorType {
   return {
     name: 'InvalidCredentialsError',
     message: 'Email or password are incorrect',
+  };
+}
+
+function badRequest(): ErrorType {
+  return {
+    name: 'BadRequest',
+    message: 'Something went wrong',
   };
 }
 
@@ -40,4 +49,5 @@ export default {
   unauthorizedError,
   notFoundError,
   invalidCredentialsError,
+  badRequest,
 };

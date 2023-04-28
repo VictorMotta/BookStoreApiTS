@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import errors from '../errors/index';
-import userRepositories from '../repositories/userRepositories';
+import errors from '@/errors/index';
+import userRepositories from '@/repositories/userRepositories';
 import jwt from 'jsonwebtoken';
 import httpStatus from 'http-status';
 

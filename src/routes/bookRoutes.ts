@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import authValidation from '../middlewares/authValidation';
-import bookControllers from '../controllers/bookControllers';
-import { bookSchema } from '../schemas/booksSchema';
-import { validateSchema } from '../middlewares/schemaValidationMiddleware';
+import authValidation from '@/middlewares/authValidation';
+import bookControllers from '@/controllers/bookControllers';
+import { bookSchema } from '@/schemas/booksSchema';
+import { validateSchema } from '@/middlewares/schemaValidationMiddleware';
 
 const bookRoutes = Router();
 

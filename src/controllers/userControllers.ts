@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { User } from '../protocols/types';
-import userServices from '../services/userServices';
+import { User } from '@/protocols/types';
+import userServices from '@/services/userServices';
 
 async function signUp(req: Request, res: Response, next: NextFunction) {
   const newUser = req.body as User;

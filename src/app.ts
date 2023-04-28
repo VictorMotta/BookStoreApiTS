@@ -1,8 +1,11 @@
 import express, { json } from 'express';
 import cors from 'cors';
-import routes from './routes/index';
-import { handleApplicationErrors } from './middlewares/errorMiddleware';
+import routes from '@/routes';
+import { handleApplicationErrors } from '@/middlewares/errorMiddleware';
 import 'dotenv/config';
+import { loadEnvs } from '@/config/envs';
+
+loadEnvs();
 
 const app = express();
 

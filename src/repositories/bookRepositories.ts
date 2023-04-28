@@ -1,5 +1,5 @@
-import { BookAndCreator, TakenBook, findAllMyBooks } from '../protocols/types';
-import prisma from '../config/database';
+import { BookAndCreator, TakenBook, findAllMyBooks } from '@/protocols/types';
+import prisma from '@/config/database';
 
 async function findAll(): Promise<BookAndCreator[]> {
   return await prisma.book.findMany({

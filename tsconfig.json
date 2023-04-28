@@ -3,9 +3,20 @@
     "module": "CommonJS",
     "outDir": "./dist",
     "esModuleInterop": true,
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "baseUrl": "src",
+    "rootDirs": ["src", "tests"],
+    "paths": {
+      "@/*": ["*"]
+    },
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths"
+      }
+    ]
   },
   "ts-node": {
     "esm": true
-  }
+  },
+  "include": ["src", "tests"]
 }

@@ -1,10 +1,9 @@
 import dotenv from 'dotenv';
 
 export function loadEnvs() {
-  let path = '.env';
-  if (process.env.NODE_ENV === 'test') {
-    path = '.env.test';
-  }
+  const node_env = process.env.NODE_ENV;
+
+  const path = node_env === 'dev' ? '.env.development' : node_env === 'test' ? '.env.test' : '.env';
 
   dotenv.config({ path });
 }

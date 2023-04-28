@@ -47,3 +47,10 @@ export type BookAndCreator = {
     name: string;
   };
 };
+
+export type ErrorType = {
+  name: string;
+  message: string | string[];
+};
+
+export type ErrorTypeForEmail = ErrorType & { email: string };
